@@ -9,6 +9,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
+using VendasWebMVC.Data;
 
 namespace VendasWebMVC
 {
@@ -33,6 +35,17 @@ namespace VendasWebMVC
 
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+
+            //Conexao do SqlServer
+            services.AddDbContext<VendasWebMVCContext>(options =>
+                    options.UseSqlServer(Configuration.GetConnectionString("VendasWebMVCContext")));
+
+            //Conexao MySQL
+            //Para usar o MySql precisamos instalar as dependencias do banco MySql via Nuget
+            //Comando: Install-Package Pomelo.EntityFrameworkCore.MySql
+            //services.AddDbContext<VendasWebMVCContext>(options =>
+            //        options.UseMySql(Configuration.GetConnectionString("VendasWebMVCContext"), builder =>  //"" = nome da classe de contexto
+            //            builder.MigrationsAssembly("VendasWebMVC"))); //Nome do Projeto
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
