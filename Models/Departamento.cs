@@ -8,7 +8,6 @@ namespace VendasWebMVC.Models
 {
     public class Departamento
     {
-
         #region Propriedades
         [Key]
         public int IdDepartamento { get; set; }

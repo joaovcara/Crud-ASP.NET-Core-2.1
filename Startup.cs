@@ -46,6 +46,12 @@ namespace VendasWebMVC
             //services.AddDbContext<VendasWebMVCContext>(options =>
             //        options.UseMySql(Configuration.GetConnectionString("VendasWebMVCContext"), builder =>  //"" = nome da classe de contexto
             //            builder.MigrationsAssembly("VendasWebMVC"))); //Nome do Projeto
+
+
+
+            //Registrando o SeedingServices
+            services.AddScoped<SeedingService>();
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

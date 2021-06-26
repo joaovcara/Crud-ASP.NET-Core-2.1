@@ -1,0 +1,12 @@
+﻿A Migration é responsável pela criação do banco de dados e tabelas.
+Sendo assim precisamos apenas gerar nossas classes e cricar uma Migration.
+
+A princípio criei uma Inicial Apenas com uma tabela. (Departamentos)
+
+
+
+
+Comandos:
+
+Criar Migration: Add-Migration <Nome da Migration>
+Executar Migration: Update-Database
