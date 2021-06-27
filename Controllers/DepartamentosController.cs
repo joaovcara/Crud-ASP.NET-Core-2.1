@@ -7,17 +7,21 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using VendasWebMVC.Data;
 using VendasWebMVC.Models;
+using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
 
 namespace VendasWebMVC.Controllers
 {
     public class DepartamentosController : Controller
     {
         #region Contexto
+        //Faz referencia a classe de contexto.
         private readonly VendasWebMVCContext _context;
         #endregion
 
 
         #region Construtor
+        //Metodo construtor que passa o contexto para variavel _context
         public DepartamentosController(VendasWebMVCContext context)
         {
             _context = context;
@@ -171,6 +175,18 @@ namespace VendasWebMVC.Controllers
         private bool DepartamentoExists(int id)
         {
             return _context.Departamento.Any(e => e.IdDepartamento == id);
+        }
+        #endregion
+
+
+        #region SelectAllAsync
+        //Para implementar funções assincronas é preciso importar os seguintes using:
+        //using System.Threading.Tasks;
+        //using Microsoft.EntityFrameworkCore;
+        public async Task<List<Departamento>> SelectAllAsync()
+        {
+            //await: comunica o compilador que é uma função assincrona
+            return await _context.Departamento.OrderBy(x => x.Descricao).ToListAsync();
         }
         #endregion
     }

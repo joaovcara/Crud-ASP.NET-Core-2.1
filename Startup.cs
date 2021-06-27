@@ -23,7 +23,7 @@ namespace VendasWebMVC
 
         public IConfiguration Configuration { get; }
 
-        // This method gets called by the runtime. Use this method to add services to the container.
+        // Este método é chamado pelo tempo de execução. Use este método para adicionar serviços ao projeto
         public void ConfigureServices(IServiceCollection services)
         {
             services.Configure<CookiePolicyOptions>(options =>
@@ -36,6 +36,9 @@ namespace VendasWebMVC
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
 
+            //RECUPERANDO A STRING DE CONEXAO E CRIANDO CONTEXTO
+            //Abaixo é criado o contexto, recuperando a string de conexão declarada no appsettings.json
+
             //Conexao do SqlServer
             services.AddDbContext<VendasWebMVCContext>(options =>
                     options.UseSqlServer(Configuration.GetConnectionString("VendasWebMVCContext")));
@@ -46,11 +49,6 @@ namespace VendasWebMVC
             //services.AddDbContext<VendasWebMVCContext>(options =>
             //        options.UseMySql(Configuration.GetConnectionString("VendasWebMVCContext"), builder =>  //"" = nome da classe de contexto
             //            builder.MigrationsAssembly("VendasWebMVC"))); //Nome do Projeto
-
-
-
-            //Registrando o SeedingServices
-            services.AddScoped<SeedingService>();
 
         }
 
